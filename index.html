@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="{ mobileMenuOpen: false, activeSection: 'home' }">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +8,22 @@
     <meta name="keywords" content="Circle Spring School, Salama Estate Thika, Landless Thika schools, primary education Kenya, best schools in Thika, quality education Nairobi">
     <meta name="author" content="Circle Spring School">
     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="logo-BBA39KOS.jpg">
-
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- External CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="logo-BBA39KOS.jpg">
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -43,171 +46,161 @@
       "educationalLevel": "Primary education"
     }
     </script>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
 </head>
-<body>
-    <!-- Overlay for mobile menu -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Flyout Menu (for mobile) -->
-    <div class="flyout-menu" id="flyoutMenu">
-        <div class="flyout-header">
-            <div class="flyout-logo">
-               <!-- Replace with actual logo -->
-                    <img src="logo-BBA39KOS.jpg" alt="Circle Spring School Logo" class="logo-img">
-
-                <h1></h1>
-            </div>
-            <div class="flyout-close" id="closeFlyout">
-                <i class="fas fa-times"></i>
-            </div>
-        </div>
-        <ul class="flyout-nav">
-            <li><a href="#">Home</a></li>
-            <li>
-                <a href="#about" id="aboutToggle">About</a>
-            </li>
-            <li>
-                <a href="#academics" id="academicsToggle">Academics</a>
-            </li>
-            <li><a href="#admissions">Admissions</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-
+<body class="font-sans">
     <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <!-- Replace with actual logo -->
-                    <img src="logo-BBA39KOS.jpg" alt="Circle Spring School Logo" class="logo-img">
-                <h1></h1>
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo-BBA39KOS.jpg" alt="Circle Spring School Logo" class="h-12 w-12 rounded-lg mr-3">
+                <h1 class="text-xl md:text-2xl font-bold text-blue-800">Circle Spring School</h1>
             </div>
             
             <!-- Desktop Navigation -->
-            <nav class="desktop-nav">
-                <ul class="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li>
-                        <a href="#academics">Academics</a>
-                    </li>
-                    <li><a href="#admissions">Admissions</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact">Contact</a></li>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#home" class="font-semibold text-gray-800 hover:text-blue-700 transition">Home</a></li>
+                    <li><a href="#about" class="font-semibold text-gray-800 hover:text-blue-700 transition">About</a></li>
+                    <li><a href="#academics" class="font-semibold text-gray-800 hover:text-blue-700 transition">Academics</a></li>
+                    <li><a href="#admissions" class="font-semibold text-gray-800 hover:text-blue-700 transition">Admissions</a></li>
+                    <li><a href="#news" class="font-semibold text-gray-800 hover:text-blue-700 transition">News</a></li>
+                    <li><a href="#contact" class="font-semibold text-gray-800 hover:text-blue-700 transition">Contact</a></li>
                 </ul>
             </nav>
             
             <!-- Mobile Toggle -->
-            <div class="mobile-toggle" id="mobileToggle">
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-blue-800 text-xl">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" class="md:hidden bg-white shadow-lg py-4 px-4">
+            <ul class="space-y-3">
+                <li><a href="#home" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Home</a></li>
+                <li><a href="#about" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">About</a></li>
+                <li><a href="#academics" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Academics</a></li>
+                <li><a href="#admissions" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Admissions</a></li>
+                <li><a href="#news" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">News</a></li>
+                <li><a href="#contact" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Contact</a></li>
+            </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Shaping Future Leaders Through Excellence</h1>
-            <p>Circle Spring School provides a nurturing environment that inspires young minds to achieve their full potential in academics, arts, and athletics.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn btn-secondary">Schedule a Visit</a>
-                <a href="#admissions" class="btn">Apply Now</a>
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Shaping Future Leaders Through Excellence</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">Circle Spring School in Salama Estate, Thika provides a nurturing environment that inspires young minds to achieve their full potential in academics, arts, and athletics.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-8 rounded-full transition duration-300">Schedule a Visit</a>
+                <a href="#admissions" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Apply Now</a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Cards -->
-    <section class="features section">
-        <div class="container">
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg text-center border border-gray-100 shadow-sm hover:shadow-md transition duration-300">
+                    <div class="bg-blue-100 text-blue-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-graduation-cap text-3xl"></i>
                     </div>
-                    <h3>Academic Excellence</h3>
-                    <p>Ranked among the top preparatory schools in Nairobi for academic achievement.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Academic Excellence</h3>
+                    <p class="text-gray-600">Ranked among the top preparatory schools in Thika for academic achievement with a focus on holistic development.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-child"></i>
+                
+                <div class="bg-white p-8 rounded-lg text-center border border-gray-100 shadow-sm hover:shadow-md transition duration-300">
+                    <div class="bg-blue-100 text-blue-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-child text-3xl"></i>
                     </div>
-                    <h3>Holistic Development</h3>
-                    <p>Focus on academic, physical, emotional, and social growth of every child.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Holistic Development</h3>
+                    <p class="text-gray-600">Focus on academic, physical, emotional, and social growth of every child in our Salama Estate campus.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe-africa"></i>
+                
+                <div class="bg-white p-8 rounded-lg text-center border border-gray-100 shadow-sm hover:shadow-md transition duration-300">
+                    <div class="bg-blue-100 text-blue-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-globe-africa text-3xl"></i>
                     </div>
-                    <h3>Global Citizenship</h3>
-                    <p>Developing responsible global citizens with international perspective.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Global Citizenship</h3>
+                    <p class="text-gray-600">Developing responsible global citizens with international perspective while celebrating Kenyan heritage.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Our School</h2>
-                <p>Discover the Circle Spring difference</p>
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Our School</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Discover the Circle Spring difference in Salama Estate, Thika</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Established in 2005, Circle Spring School has been at the forefront of providing quality education in Nairobi for over 18 years. Our mission is to cultivate intellectual curiosity, foster creativity, and develop responsible global citizens.</p>
-                    <p>Our campus, located in the heart of Nairobi, offers state-of-the-art facilities including modern classrooms, science laboratories, a library, sports fields, and dedicated art and music studios.</p>
-                    <div style="margin-top: 2.5rem;">
-                        <a href="#mission" class="btn">Learn More About Us</a>
-                    </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <p class="text-lg text-gray-700 mb-4">Established in 2005, Circle Spring School has been at the forefront of providing quality education in Salama Estate, Thika for over 18 years. Our mission is to cultivate intellectual curiosity, foster creativity, and develop responsible global citizens.</p>
+                    <p class="text-lg text-gray-700 mb-6">Our campus, located in the heart of Salama Estate, offers state-of-the-art facilities including modern classrooms, science laboratories, a library, sports fields, and dedicated art and music studios.</p>
+                    <a href="#contact" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Learn More About Us</a>
                 </div>
-                <div class="about-image">
-                    <i class="fas fa-school"></i>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="bg-blue-800 text-white w-full h-64 md:h-80 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-school text-6xl md:text-8xl opacity-50"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Academics Section -->
-    <section id="academics" class="section academics">
-        <div class="container">
-            <div class="section-title">
-                <h2>Academic Programs</h2>
-                <p>Excellence in education</p>
+    <section id="academics" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Academic Programs</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Excellence in education at our Salama Estate campus</p>
             </div>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <div class="program-image">
-                        <i class="fas fa-puzzle-piece"></i>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-blue-800 h-48 flex items-center justify-center">
+                        <i class="fas fa-puzzle-piece text-white text-5xl"></i>
                     </div>
-                    <div class="program-content">
-                        <h3>Early Years (Ages 3-5)</h3>
-                        <p>Our play-based curriculum focuses on developing social, emotional, and cognitive skills through exploration and discovery.</p>
-                        <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem;">Learn More</a>
-                    </div>
-                </div>
-                
-                <div class="program-card">
-                    <div class="program-image">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="program-content">
-                        <h3>Primary (Grades 1-6)</h3>
-                        <p>A comprehensive curriculum that develops foundational skills in literacy, numeracy, science, and social studies.</p>
-                        <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem;">Learn More</a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Early Years (Ages 3-5)</h3>
+                        <p class="text-gray-600 mb-6">Our play-based curriculum focuses on developing social, emotional, and cognitive skills through exploration and discovery in a safe, nurturing environment.</p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Learn More →</a>
                     </div>
                 </div>
                 
-                <div class="program-card">
-                    <div class="program-image">
-                        <i class="fas fa-paint-brush"></i>
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-blue-800 h-48 flex items-center justify-center">
+                        <i class="fas fa-book-open text-white text-5xl"></i>
                     </div>
-                    <div class="program-content">
-                        <h3>Enrichment Programs</h3>
-                        <p>Specialized programs in music, arts, sports, coding, and foreign languages to complement academic learning.</p>
-                        <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem;">Learn More</a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Primary (Grades 1-6)</h3>
+                        <p class="text-gray-600 mb-6">A comprehensive curriculum that develops foundational skills in literacy, numeracy, science, and social studies with a focus on critical thinking.</p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-blue-800 h-48 flex items-center justify-center">
+                        <i class="fas fa-paint-brush text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Enrichment Programs</h3>
+                        <p class="text-gray-600 mb-6">Specialized programs in music, arts, sports, coding, and foreign languages to complement academic learning and develop well-rounded individuals.</p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Learn More →</a>
                     </div>
                 </div>
             </div>
@@ -215,184 +208,439 @@
     </section>
 
     <!-- Admissions Section -->
-    <section id="admissions" class="section" style="background-color: var(--light-gray);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Admissions</h2>
-                <p>Join our learning community</p>
+    <section id="admissions" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Admissions</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Join our learning community in Salama Estate, Thika</p>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
-                <div style="background: white; padding: 2.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
-                    <h3><i class="fas fa-calendar-check" style="color: var(--secondary); margin-right: 10px;"></i> Admissions Process</h3>
-                    <p style="margin: 1.2rem 0;">Our admissions process is designed to be straightforward and welcoming for new families.</p>
-                    <ul style="margin: 1.5rem 0 1.5rem 2rem; list-style-type: none;">
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0;"></i>
-                            Submit inquiry form
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-calendar-check text-yellow-500 mr-3"></i>
+                        Admissions Process
+                    </h3>
+                    <p class="text-gray-600 mb-6">Our admissions process is designed to be straightforward and welcoming for new families in Thika and surrounding areas.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Submit inquiry form</span>
                         </li>
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0;"></i>
-                            Schedule a campus tour
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Schedule a campus tour</span>
                         </li>
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0;"></i>
-                            Complete application
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Complete application</span>
                         </li>
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0;"></i>
-                            Student assessment
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Student assessment</span>
                         </li>
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0;"></i>
-                            Enrollment
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Enrollment</span>
                         </li>
                     </ul>
-                    <a href="#" class="btn" style="margin-top: 1rem;">Apply Now</a>
+                    <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Apply Now</a>
                 </div>
                 
-                <div style="background: white; padding: 2.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
-                    <h3><i class="fas fa-graduation-cap" style="color: var(--secondary); margin-right: 10px;"></i> Scholarships</h3>
-                    <p style="margin: 1.2rem 0;">We offer merit-based scholarships and need-based financial aid to qualified students.</p>
-                    <ul style="margin: 1.5rem 0 1.5rem 2rem; list-style-type: none;">
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-star" style="color: var(--secondary); position: absolute; left: 0;"></i>
-                            Academic Excellence Scholarship
+                <div class="bg-white p-8 rounded-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-graduation-cap text-yellow-500 mr-3"></i>
+                        Scholarships
+                    </h3>
+                    <p class="text-gray-600 mb-6">We offer merit-based scholarships and need-based financial aid to qualified students from Thika and surrounding communities.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Academic Excellence Scholarship</span>
                         </li>
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-star" style="color: var(--secondary); position: absolute; left: 0;"></i>
-                            Arts & Sports Scholarships
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Arts & Sports Scholarships</span>
                         </li>
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-star" style="color: var(--secondary); position: absolute; left: 0;"></i>
-                            Financial Aid Program
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Financial Aid Program</span>
                         </li>
-                        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                            <i class="fas fa-star" style="color: var(--secondary); position: absolute; left: 0;"></i>
-                            Sibling Discounts
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Sibling Discounts</span>
                         </li>
                     </ul>
-                    <a href="#" class="btn" style="margin-top: 1rem;">Learn More</a>
+                    <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- News Section -->
-    <section id="news" class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>News & Events</h2>
-                <p>Stay updated with our community</p>
+    <section id="news" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">News & Events</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Stay updated with our community in Salama Estate</p>
             </div>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="news-image">
-                        <i class="fas fa-medal"></i>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-yellow-500 h-48 flex items-center justify-center">
+                        <i class="fas fa-medal text-gray-900 text-5xl"></i>
                     </div>
-                    <div class="news-content">
-                        <span class="news-date">June 15, 2023</span>
-                        <h3>Annual Sports Day Champions</h3>
-                        <p>Our students showcased incredible talent and sportsmanship at our Annual Sports Day. Congratulations to all participants!</p>
-                        <a href="#" style="display: inline-block; margin-top: 1.2rem; color: var(--primary); font-weight: 600;">Read More →</a>
+                    <div class="p-6">
+                        <span class="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full mb-3">June 15, 2023</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Annual Sports Day Champions</h3>
+                        <p class="text-gray-600 mb-4">Our students showcased incredible talent and sportsmanship at our Annual Sports Day. Congratulations to all participants from our Salama Estate campus!</p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Read More →</a>
                     </div>
                 </div>
                 
-                <div class="news-card">
-                    <div class="news-image">
-                        <i class="fas fa-flask"></i>
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-yellow-500 h-48 flex items-center justify-center">
+                        <i class="fas fa-flask text-gray-900 text-5xl"></i>
                     </div>
-                    <div class="news-content">
-                        <span class="news-date">May 28, 2023</span>
-                        <h3>Science Fair Winners</h3>
-                        <p>Circle Spring students won three awards at the Nairobi Regional Science Fair for their innovative projects on renewable energy.</p>
-                        <a href="#" style="display: inline-block; margin-top: 1.2rem; color: var(--primary); font-weight: 600;">Read More →</a>
+                    <div class="p-6">
+                        <span class="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full mb-3">May 28, 2023</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Science Fair Winners</h3>
+                        <p class="text-gray-600 mb-4">Circle Spring students won three awards at the Thika Regional Science Fair for their innovative projects on renewable energy and environmental conservation.</p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Read More →</a>
                     </div>
                 </div>
                 
-                <div class="news-card">
-                    <div class="news-image">
-                        <i class="fas fa-book-open"></i>
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-yellow-500 h-48 flex items-center justify-center">
+                        <i class="fas fa-book-open text-gray-900 text-5xl"></i>
                     </div>
-                    <div class="news-content">
-                        <span class="news-date">April 10, 2023</span>
-                        <h3>New Learning Commons Opens</h3>
-                        <p>Our newly renovated library and learning commons is now open, featuring state-of-the-art technology and collaborative spaces.</p>
-                        <a href="#" style="display: inline-block; margin-top: 1.2rem; color: var(--primary); font-weight: 600;">Read More →</a>
+                    <div class="p-6">
+                        <span class="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full mb-3">April 10, 2023</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">New Learning Commons Opens</h3>
+                        <p class="text-gray-600 mb-4">Our newly renovated library and learning commons is now open, featuring state-of-the-art technology and collaborative spaces for enhanced learning.</p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Read More →</a>
                     </div>
                 </div>
             </div>
-            <div class="text-center" style="margin-top: 3.5rem;">
-                <a href="#" class="btn">View All News</a>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">View All News</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white" x-data="{ openCategory: null, openFaq: null }">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Everything you need to know about Circle Spring School in Salama Estate, Thika</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-6">
+                <!-- Admissions Category -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button 
+                        @click="openCategory = openCategory === 'admissions' ? null : 'admissions'" 
+                        class="w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50 transition"
+                    >
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-800">Admissions Process</h3>
+                            <p class="text-gray-500 text-sm mt-1">Learn about our enrollment requirements and procedures</p>
+                        </div>
+                        <svg 
+                            class="h-6 w-6 text-blue-800 transform transition-transform duration-300" 
+                            :class="openCategory === 'admissions' ? 'rotate-180' : ''"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <div x-show="openCategory === 'admissions'" x-transition class="border-t border-gray-100">
+                        <div class="space-y-0">
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'admissions1' ? null : 'admissions1'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">What is the admissions process at Circle Spring School?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'admissions1' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'admissions1'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">Our admissions process involves: 1) Submitting an inquiry form, 2) Scheduling a campus tour, 3) Completing the application, 4) Student assessment, and 5) Final enrollment. The entire process typically takes 2-3 weeks.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'admissions2' ? null : 'admissions2'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">What are the age requirements for different programs?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'admissions2' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'admissions2'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">Early Years Program: 3-5 years old, Primary School: 6-12 years old (Grades 1-6). Children must meet the age requirement by September 1st of the academic year.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'admissions3' ? null : 'admissions3'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">Do you accept mid-year transfers?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'admissions3' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'admissions3'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">Yes, we accept mid-year transfers based on availability. The student will undergo an assessment to ensure proper placement, and we'll review previous school records.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fees & Payment Category -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button 
+                        @click="openCategory = openCategory === 'fees' ? null : 'fees'" 
+                        class="w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50 transition"
+                    >
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-800">Fees & Payment</h3>
+                            <p class="text-gray-500 text-sm mt-1">Information about tuition, payment options, and financial aid</p>
+                        </div>
+                        <svg 
+                            class="h-6 w-6 text-blue-800 transform transition-transform duration-300" 
+                            :class="openCategory === 'fees' ? 'rotate-180' : ''"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <div x-show="openCategory === 'fees'" x-transition class="border-t border-gray-100">
+                        <div class="space-y-0">
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'fees1' ? null : 'fees1'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">What is included in the school fees?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'fees1' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'fees1'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">Our fees cover tuition, textbooks, basic stationery, and access to all school facilities. Additional costs may include uniforms, specialized extracurricular activities, and field trips.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'fees2' ? null : 'fees2'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">What payment options are available?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'fees2' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'fees2'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">We accept bank transfers, mobile money (M-Pesa), and cash payments. Fees can be paid annually, per term (3 terms), or through monthly installment plans with a small administrative fee.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'fees3' ? null : 'fees3'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">Are there any discounts for siblings?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'fees3' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'fees3'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">Yes, we offer a 10% discount on tuition fees for the second child and 15% for the third and subsequent children from the same family.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Academic Programs Category -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button 
+                        @click="openCategory = openCategory === 'academics' ? null : 'academics'" 
+                        class="w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50 transition"
+                    >
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-800">Academic Programs</h3>
+                            <p class="text-gray-500 text-sm mt-1">Details about our curriculum and educational approach</p>
+                        </div>
+                        <svg 
+                            class="h-6 w-6 text-blue-800 transform transition-transform duration-300" 
+                            :class="openCategory === 'academics' ? 'rotate-180' : ''"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <div x-show="openCategory === 'academics'" x-transition class="border-t border-gray-100">
+                        <div class="space-y-0">
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'academics1' ? null : 'academics1'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">What curriculum does Circle Spring School follow?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'academics1' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'academics1'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">We follow the Kenyan Competency-Based Curriculum (CBC) with enhancements in critical thinking, creativity, and global perspectives to provide a well-rounded education.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'academics2' ? null : 'academics2'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">What extracurricular activities are available?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'academics2' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'academics2'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">We offer sports (football, athletics, swimming), music, art, drama, coding club, debate, environmental club, and various cultural activities to develop diverse talents.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-100 last:border-b-0">
+                                <button 
+                                    @click="openFaq = openFaq === 'academics3' ? null : 'academics3'" 
+                                    class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
+                                >
+                                    <span class="text-lg font-medium text-gray-900">Do you offer special needs education support?</span>
+                                    <svg 
+                                        class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                                        :class="openFaq === 'academics3' ? 'rotate-180' : ''"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="openFaq === 'academics3'" x-transition class="px-5 pb-5">
+                                    <p class="text-gray-600">Yes, we have a Special Educational Needs (SEN) program with trained staff to support students with learning differences. We conduct assessments to create individualized learning plans.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Contact Us</h2>
-                    <p>We'd love to hear from you. Reach out to schedule a tour or learn more about our programs.</p>
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="bg-blue-800 text-white p-8 rounded-lg">
+                    <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+                    <p class="text-lg mb-8">We'd love to hear from you. Reach out to schedule a tour or learn more about our programs at our Salama Estate campus.</p>
                     
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow-500 text-xl mt-1 mr-4"></i>
                             <div>
-                                <h4>Address</h4>
-                                <p>123 Education Road, Westlands<br>Nairobi, Kenya</p>
+                                <h4 class="font-bold text-lg">Address</h4>
+                                <p>Salama Estate, Landless<br>Thika, Kenya</p>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-yellow-500 text-xl mt-1 mr-4"></i>
                             <div>
-                                <h4>Phone</h4>
+                                <h4 class="font-bold text-lg">Phone</h4>
                                 <p>0111 427110</p>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-yellow-500 text-xl mt-1 mr-4"></i>
                             <div>
-                                <h4>Email</h4>
+                                <h4 class="font-bold text-lg">Email</h4>
                                 <p>enquiries@circlespringschool.com</p>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-yellow-500 text-xl mt-1 mr-4"></i>
                             <div>
-                                <h4>Office Hours</h4>
+                                <h4 class="font-bold text-lg">Office Hours</h4>
                                 <p>Monday-Friday: 8:00 AM - 4:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                <div class="bg-white p-8 rounded-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+                    <form class="space-y-5">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required>
                         </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required>
                         </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Phone Number">
+                        <div>
+                            <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800">
                         </div>
-                        <div class="form-group">
-                            <select class="form-control" required>
+                        <div>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required>
                                 <option value="" disabled selected>I'm interested in...</option>
                                 <option>Early Years Program</option>
                                 <option>Primary Program</option>
@@ -401,10 +649,10 @@
                                 <option>Other Inquiry</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        <div>
+                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 w-full">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -412,130 +660,99 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="logo-img">
-                        <img src="logo-BBA39KOS.jpg" alt="Circle Spring School Logo" class="logo-img" style="width: 60px; height: auto; margin-bottom: 1rem;">
-                    </div>
-                    <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.8);">Providing quality education in Thika since 2005. Nurturing young minds to become tomorrow's leaders.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="logo-BBA39KOS.jpg" alt="Circle Spring School Logo" class="h-16 w-16 rounded-lg mb-4">
+                    <h3 class="text-xl font-bold mb-4">Circle Spring School</h3>
+                    <p class="text-blue-200 mb-6">Providing quality education in Thika since 2005. Nurturing young minds to become tomorrow's leaders.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-blue-800 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-blue-800 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-blue-800 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-blue-800 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#academics">Academics</a></li>
-                        <li><a href="#admissions">Admissions</a></li>
-                        <li><a href="#news">News & Events</a></li>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-blue-200 hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-blue-200 hover:text-white transition">About Us</a></li>
+                        <li><a href="#academics" class="text-blue-200 hover:text-white transition">Academics</a></li>
+                        <li><a href="#admissions" class="text-blue-200 hover:text-white transition">Admissions</a></li>
+                        <li><a href="#news" class="text-blue-200 hover:text-white transition">News & Events</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Early Years</a></li>
-                        <li><a href="#">Primary School</a></li>
-                        <li><a href="#">Enrichment Programs</a></li>
-                        <li><a href="#">After School Care</a></li>
-                        <li><a href="#">Summer Camp</a></li>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Programs</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Early Years</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Primary School</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Enrichment Programs</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">After School Care</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Summer Camp</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> 123 Education Road, Nairobi</a></li>
-                        <li><a href="tel:+2540111427110"><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +254 0111 427 110</a></li>
-                        <li><a href="mailto:info@circlespring.edu"><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@circlespring.edu</a></li>
-                        <li><a href="#"><i class="fas fa-clock" style="margin-right: 10px;"></i> Mon-Fri: 8:00AM - 5:00PM</a></li>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-blue-200">Salama Estate, Thika</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-blue-200">+254 0111 427 110</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-blue-200">info@circlespringschool.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-blue-200">Mon-Fri: 8:00AM - 4:00PM</span>
+                        </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; <span id="currentYear"></span> Circle Spring School.</p>
+            <div class="pt-8 border-t border-blue-800 text-center">
+                <p class="text-blue-300">&copy; <span id="currentYear"></span> Circle Spring School. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
-    
+
     <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-800 hover:bg-blue-900 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300 opacity-0 invisible">
         <i class="fas fa-arrow-up"></i>
-    </div>
+    </button>
 
     <script>
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Mobile navigation toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const flyoutMenu = document.getElementById('flyoutMenu');
-        const closeFlyout = document.getElementById('closeFlyout');
-        const overlay = document.getElementById('overlay');
-        
-        function openMenu() {
-            flyoutMenu.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMenu() {
-            flyoutMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        mobileToggle.addEventListener('click', openMenu);
-        closeFlyout.addEventListener('click', closeMenu);
-        overlay.addEventListener('click', closeMenu);
-        
-        // Flyout dropdowns
-        const aboutToggle = document.getElementById('aboutToggle');
-        const aboutDropdown = document.getElementById('aboutDropdown');
-        const academicsToggle = document.getElementById('academicsToggle');
-        const academicsDropdown = document.getElementById('academicsDropdown');
-        
-        aboutToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            aboutDropdown.classList.toggle('active');
-            aboutToggle.classList.toggle('active');
-        });
-        
-        academicsToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            academicsDropdown.classList.toggle('active');
-            academicsToggle.classList.toggle('active');
-        });
-        
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!aboutToggle.contains(e.target) && !aboutDropdown.contains(e.target)) {
-                aboutDropdown.classList.remove('active');
-                aboutToggle.classList.remove('active');
-            }
-            if (!academicsToggle.contains(e.target) && !academicsDropdown.contains(e.target)) {
-                academicsDropdown.classList.remove('active');
-                academicsToggle.classList.remove('active');
-            }
-        });
         
         // Back to top button
         const backToTop = document.getElementById('backToTop');
         
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
-                backToTop.classList.add('show');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
             } else {
-                backToTop.classList.remove('show');
+                backToTop.classList.remove('opacity-100', 'visible');
+                backToTop.classList.add('opacity-0', 'invisible');
             }
         });
         
@@ -544,21 +761,6 @@
                 top: 0,
                 behavior: 'smooth'
             });
-        });
-        
-        // Scroll animations for sections
-        const sections = document.querySelectorAll('.section');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        sections.forEach(section => {
-            observer.observe(section);
         });
         
         // Smooth scrolling for anchor links
@@ -572,9 +774,6 @@
                         top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close menu if open
-                    closeMenu();
                 }
             });
         });
