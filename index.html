@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ mobileMenuOpen: false, activeSection: 'home' }">
+<html lang="en" x-data="{ mobileMenuOpen: false, activeSection: 'home', language: 'en' }">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,24 @@
     <meta name="description" content="Circle Spring School in Salama Estate, Thika offers quality education with holistic development. Top primary school in Landless area with excellent academic programs.">
     <meta name="keywords" content="Circle Spring School, Salama Estate Thika, Landless Thika schools, primary education Kenya, best schools in Thika, quality education Nairobi">
     <meta name="author" content="Circle Spring School">
-    
+    <!-- Add preload for critical resources -->
+<link rel="preload" href="logo-BBA39KOS.jpg" as="image">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" as="style">
+
+<!-- Add Open Graph tags for social sharing -->
+<meta property="og:title" content="Circle Spring School | Best Primary School in Salama Estate, Thika Kenya">
+<meta property="og:description" content="Quality education with holistic development in Salama Estate, Thika">
+<meta property="og:image" content="logo-BBA39KOS.jpg">
+<meta property="og:url" content="https://www.circlespringschool.co.ke">
+<meta property="og:type" content="website">
+
+<!-- Add Twitter Card tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Circle Spring School">
+<meta name="twitter:description" content="Best Primary School in Salama Estate, Thika Kenya">
+
+<!-- Add canonical URL -->
+<link rel="canonical" href="https://www.circlespringschool.co.ke">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -24,6 +41,7 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="logo-BBA39KOS.jpg">
+    <link rel="stylesheet" href="critical.css" inline>
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -55,6 +73,46 @@
             font-family: 'Montserrat', sans-serif;
         }
     </style>
+    <style>
+    /* Custom styles */
+    .bg-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    /* Loading animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #1e40af;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #1e3a8a;
+    }
+</style>
 </head>
 <body class="font-sans">
     <!-- Header -->
@@ -62,51 +120,104 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="logo-BBA39KOS.jpg" alt="Circle Spring School Logo" class="h-12 w-12 rounded-lg mr-3">
-                <h1 class="text-xl md:text-2xl font-bold text-blue-800">Circle Spring School</h1>
+                <h1 class="text-xl md:text-2xl font-bold text-blue-800"></h1>
             </div>
             
             <!-- Desktop Navigation -->
-            <nav class="hidden md:block">
+            <nav class="hidden md:flex items-center space-x-8">
                 <ul class="flex space-x-8">
-                    <li><a href="#home" class="font-semibold text-gray-800 hover:text-blue-700 transition">Home</a></li>
-                    <li><a href="#about" class="font-semibold text-gray-800 hover:text-blue-700 transition">About</a></li>
-                    <li><a href="#academics" class="font-semibold text-gray-800 hover:text-blue-700 transition">Academics</a></li>
-                    <li><a href="#admissions" class="font-semibold text-gray-800 hover:text-blue-700 transition">Admissions</a></li>
-                    <li><a href="#news" class="font-semibold text-gray-800 hover:text-blue-700 transition">News</a></li>
-                    <li><a href="#contact" class="font-semibold text-gray-800 hover:text-blue-700 transition">Contact</a></li>
+                    <li><a href="#home" class="font-semibold text-gray-800 hover:text-blue-700 transition" x-text="language === 'en' ? 'Home' : 'Nyumbani'"></a></li>
+                    <li><a href="#about" class="font-semibold text-gray-800 hover:text-blue-700 transition" x-text="language === 'en' ? 'About' : 'Kuhusu'"></a></li>
+                    <li><a href="#academics" class="font-semibold text-gray-800 hover:text-blue-700 transition" x-text="language === 'en' ? 'Academics' : 'Masomo'"></a></li>
+                    <li><a href="#admissions" class="font-semibold text-gray-800 hover:text-blue-700 transition" x-text="language === 'en' ? 'Admissions' : 'Uandikishaji'"></a></li>
+                    <li><a href="#news" class="font-semibold text-gray-800 hover:text-blue-700 transition" x-text="language === 'en' ? 'News' : 'Habari'"></a></li>
+                    <li><a href="#contact" class="font-semibold text-gray-800 hover:text-blue-700 transition" x-text="language === 'en' ? 'Contact' : 'Wasiliana'"></a></li>
                 </ul>
+                
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-2 ml-4">
+                    <button @click="language = 'en'" :class="language === 'en' ? 'bg-blue-800 text-white' : 'bg-gray-200 text-gray-700'" class="px-3 py-1 rounded-md text-sm font-medium transition">
+                        EN
+                    </button>
+                    <button @click="language = 'sw'" :class="language === 'sw' ? 'bg-blue-800 text-white' : 'bg-gray-200 text-gray-700'" class="px-3 py-1 rounded-md text-sm font-medium transition">
+                        SW
+                    </button>
+                </div>
             </nav>
             
             <!-- Mobile Toggle -->
-            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-blue-800 text-xl">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="flex items-center space-x-4 md:hidden">
+                <!-- Language Switcher for Mobile -->
+                <div class="flex items-center space-x-1">
+                    <button @click="language = 'en'" :class="language === 'en' ? 'bg-blue-800 text-white' : 'bg-gray-200 text-gray-700'" class="px-2 py-1 rounded text-xs font-medium">
+                        EN
+                    </button>
+                    <button @click="language = 'sw'" :class="language === 'sw' ? 'bg-blue-800 text-white' : 'bg-gray-200 text-gray-700'" class="px-2 py-1 rounded text-xs font-medium">
+                        SW
+                    </button>
+                </div>
+                
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-blue-800 text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
         
         <!-- Mobile Menu -->
         <div x-show="mobileMenuOpen" class="md:hidden bg-white shadow-lg py-4 px-4">
             <ul class="space-y-3">
-                <li><a href="#home" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Home</a></li>
-                <li><a href="#about" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">About</a></li>
-                <li><a href="#academics" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Academics</a></li>
-                <li><a href="#admissions" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Admissions</a></li>
-                <li><a href="#news" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">News</a></li>
-                <li><a href="#contact" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false">Contact</a></li>
+                <li><a href="#home" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false" x-text="language === 'en' ? 'Home' : 'Nyumbani'"></a></li>
+                <li><a href="#about" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false" x-text="language === 'en' ? 'About' : 'Kuhusu'"></a></li>
+                <li><a href="#academics" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false" x-text="language === 'en' ? 'Academics' : 'Masomo'"></a></li>
+                <li><a href="#admissions" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false" x-text="language === 'en' ? 'Admissions' : 'Uandikishaji'"></a></li>
+                <li><a href="#news" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false" x-text="language === 'en' ? 'News' : 'Habari'"></a></li>
+                <li><a href="#contact" class="block font-semibold text-gray-800 hover:text-blue-700 transition py-2" @click="mobileMenuOpen = false" x-text="language === 'en' ? 'Contact' : 'Wasiliana'"></a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Shaping Future Leaders Through Excellence</h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">Circle Spring School in Salama Estate, Thika provides a nurturing environment that inspires young minds to achieve their full potential in academics, arts, and athletics.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#contact" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-8 rounded-full transition duration-300">Schedule a Visit</a>
-                <a href="#admissions" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Apply Now</a>
+<!-- Hero Section -->
+<section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden bg-gradient-to-r from-blue-800 to-blue-600 text-white">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+    
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" x-text="language === 'en' ? 'Shaping Future Leaders Through Excellence' : 'Kuunda Viongozi wa Baadaye Kupitia Ubora'"></h1>
+            <p class="text-xl md:text-2xl mb-10 leading-relaxed" x-text="language === 'en' ? 'Circle Spring School in Salama Estate, Thika provides a nurturing environment that inspires young minds to achieve their full potential.' : 'Shule ya Circle Spring katika eneo la Salama Estate, Thika inatoa mazingira ya malezi yanayohamasha akili za vijana kufikia uwezo wao kamili.'"></p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" 
+                   class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                   <i class="fas fa-calendar-alt mr-2"></i><span x-text="language === 'en' ? 'Schedule a Visit' : 'Panga Ziara'"></span>
+                </a>
+                <a href="#admissions" 
+                   class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+                   <i class="fas fa-file-alt mr-2"></i><span x-text="language === 'en' ? 'Apply Now' : 'Ombi Sasa'"></span>
+                </a>
             </div>
         </div>
-    </section>
+        
+        <!-- Quick stats -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+            <div class="text-center">
+                <div class="text-3xl font-bold text-yellow-400">18+</div>
+                <div class="text-sm opacity-90" x-text="language === 'en' ? 'Years Experience' : 'Miaka ya Uzoefu'"></div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-yellow-400">500+</div>
+                <div class="text-sm opacity-90" x-text="language === 'en' ? 'Students' : 'Wanafunzi'"></div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-yellow-400">98%</div>
+                <div class="text-sm opacity-90" x-text="language === 'en' ? 'Success Rate' : 'Kiwango cha Mafanikio'"></div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-yellow-400">25+</div>
+                <div class="text-sm opacity-90" x-text="language === 'en' ? 'Qualified Staff' : 'Wafanyakazi Waliohitimu'"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Features Section -->
     <section class="py-16 bg-white">
@@ -116,24 +227,24 @@
                     <div class="bg-blue-100 text-blue-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-graduation-cap text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Academic Excellence</h3>
-                    <p class="text-gray-600">Ranked among the top preparatory schools in Thika for academic achievement with a focus on holistic development.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'Academic Excellence' : 'Ubora wa Kimasomo'"></h3>
+                    <p class="text-gray-600" x-text="language === 'en' ? 'Ranked among the top preparatory schools in Thika for academic achievement with a focus on holistic development.' : 'Imeorodheshwa miongoni mwa shule bora za maandalizi huko Thika kwa mafanikio ya kielimu kwa kuzingatia ukuzaji wa jumla.'"></p>
                 </div>
                 
                 <div class="bg-white p-8 rounded-lg text-center border border-gray-100 shadow-sm hover:shadow-md transition duration-300">
                     <div class="bg-blue-100 text-blue-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-child text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Holistic Development</h3>
-                    <p class="text-gray-600">Focus on academic, physical, emotional, and social growth of every child in our Salama Estate campus.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'Holistic Development' : 'Ukuzaji Kamili'"></h3>
+                    <p class="text-gray-600" x-text="language === 'en' ? 'Focus on academic, physical, emotional, and social growth of every child in our Salama Estate campus.' : 'Mwelekeo kwa kielimu, kimwili, kihisia na ukuaji wa kijamii wa kila mtoto katika kampasi yetu ya Salama Estate.'"></p>
                 </div>
                 
                 <div class="bg-white p-8 rounded-lg text-center border border-gray-100 shadow-sm hover:shadow-md transition duration-300">
                     <div class="bg-blue-100 text-blue-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-globe-africa text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Global Citizenship</h3>
-                    <p class="text-gray-600">Developing responsible global citizens with international perspective while celebrating Kenyan heritage.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'Global Citizenship' : 'Uraia wa Kimataifa'"></h3>
+                    <p class="text-gray-600" x-text="language === 'en' ? 'Developing responsible global citizens with international perspective while celebrating Kenyan heritage.' : 'Kukuza raia wa kimataifa wenye majukumu kwa mtazamo wa kimataifa huku tukisherehekea urithi wa Kenya.'"></p>
                 </div>
             </div>
         </div>
@@ -143,15 +254,15 @@
     <section id="about" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Our School</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Discover the Circle Spring difference in Salama Estate, Thika</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'About Our School' : 'Kuhusu Shule Yetu'"></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" x-text="language === 'en' ? 'Discover the Circle Spring difference in Salama Estate, Thika' : 'Gundua tofauti ya Circle Spring katika eneo la Salama Estate, Thika'"></p>
             </div>
             
             <div class="flex flex-col md:flex-row items-center gap-10">
                 <div class="md:w-1/2">
-                    <p class="text-lg text-gray-700 mb-4">Established in 2005, Circle Spring School has been at the forefront of providing quality education in Salama Estate, Thika for over 18 years. Our mission is to cultivate intellectual curiosity, foster creativity, and develop responsible global citizens.</p>
-                    <p class="text-lg text-gray-700 mb-6">Our campus, located in the heart of Salama Estate, offers state-of-the-art facilities including modern classrooms, science laboratories, a library, sports fields, and dedicated art and music studios.</p>
-                    <a href="#contact" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Learn More About Us</a>
+                    <p class="text-lg text-gray-700 mb-4" x-text="language === 'en' ? 'Established in 2005, Circle Spring School has been at the forefront of providing quality education in Salama Estate, Thika for over 18 years. Our mission is to cultivate intellectual curiosity, foster creativity, and develop responsible global citizens.' : 'Iliyoanzishwa mwaka 2005, Shule ya Circle Spring imekuwa mstari wa mbele katika kutoa elimu bora katika eneo la Salama Estate, Thika kwa zaidi ya miaka 18. Dhamira yetu ni kukuza udadisi wa kiakili, kukuza ubunifu, na kukuza raia wa kimataifa wenye majukumu.'"></p>
+                    <p class="text-lg text-gray-700 mb-6" x-text="language === 'en' ? 'Our campus, located in the heart of Salama Estate, offers state-of-the-art facilities including modern classrooms, science laboratories, a library, sports fields, and dedicated art and music studios.' : 'Kampasi yetu, iliyoko katika moyo wa Salama Estate, inatoa vifaa vya kisasa ikiwemo madarasa ya kisasa, maabara za sayansi, maktaba, uwanja wa michezo, na studio maalum za sanaa na muziki.'"></p>
+                    <a href="#contact" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block" x-text="language === 'en' ? 'Learn More About Us' : 'Jifunze Zaidi Kutupatia'"></a>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
                     <div class="bg-blue-800 text-white w-full h-64 md:h-80 rounded-lg flex items-center justify-center">
@@ -166,8 +277,8 @@
     <section id="academics" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Academic Programs</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Excellence in education at our Salama Estate campus</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'Academic Programs' : 'Mipango ya Masomo'"></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" x-text="language === 'en' ? 'Excellence in education at our Salama Estate campus' : 'Ubora katika elimu katika kampasi yetu ya Salama Estate'"></p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -176,9 +287,9 @@
                         <i class="fas fa-puzzle-piece text-white text-5xl"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Early Years (Ages 3-5)</h3>
-                        <p class="text-gray-600 mb-6">Our play-based curriculum focuses on developing social, emotional, and cognitive skills through exploration and discovery in a safe, nurturing environment.</p>
-                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Learn More →</a>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" x-text="language === 'en' ? 'Early Years (Ages 3-5)' : 'Miaka ya Mapema (Umri 3-5)'"></h3>
+                        <p class="text-gray-600 mb-6" x-text="language === 'en' ? 'Our play-based curriculum focuses on developing social, emotional, and cognitive skills through exploration and discovery in a safe, nurturing environment.' : 'Mtaala wetu unaozingatia michezo unalenga kuendeleza ujuzi wa kijamii, kihisia na utambuzi kupitia utafiti na ugunduzi katika mazingira salama na ya malezi.'"></p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition" x-text="language === 'en' ? 'Learn More →' : 'Jifunze Zaidi →'"></a>
                     </div>
                 </div>
                 
@@ -187,9 +298,9 @@
                         <i class="fas fa-book-open text-white text-5xl"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Primary (Grades 1-6)</h3>
-                        <p class="text-gray-600 mb-6">A comprehensive curriculum that develops foundational skills in literacy, numeracy, science, and social studies with a focus on critical thinking.</p>
-                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Learn More →</a>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" x-text="language === 'en' ? 'Primary (Grades 1-6)' : 'Msingi (Darasa la 1-6)'"></h3>
+                        <p class="text-gray-600 mb-6" x-text="language === 'en' ? 'A comprehensive curriculum that develops foundational skills in literacy, numeracy, science, and social studies with a focus on critical thinking.' : 'Mtaala kamili unaokuza ujuzi wa msingi katika usomaji, hesabu, sayansi na masomo ya jamii kwa kuzingatia fikra za kina.'"></p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition" x-text="language === 'en' ? 'Learn More →' : 'Jifunze Zaidi →'"></a>
                     </div>
                 </div>
                 
@@ -198,9 +309,9 @@
                         <i class="fas fa-paint-brush text-white text-5xl"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Enrichment Programs</h3>
-                        <p class="text-gray-600 mb-6">Specialized programs in music, arts, sports, coding, and foreign languages to complement academic learning and develop well-rounded individuals.</p>
-                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Learn More →</a>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" x-text="language === 'en' ? 'Enrichment Programs' : 'Mipango ya Uboreshaji'"></h3>
+                        <p class="text-gray-600 mb-6" x-text="language === 'en' ? 'Specialized programs in music, arts, sports, coding, and foreign languages to complement academic learning and develop well-rounded individuals.' : 'Mipango maalum ya muziki, sanaa, michezo, coding, na lugha za kigeni ili kukamilisha kujifunza kielimu na kuendeleza watu wenye ujuzi mwingi.'"></p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition" x-text="language === 'en' ? 'Learn More →' : 'Jifunze Zaidi →'"></a>
                     </div>
                 </div>
             </div>
@@ -211,67 +322,67 @@
     <section id="admissions" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Admissions</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Join our learning community in Salama Estate, Thika</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'Admissions' : 'Uandikishaji'"></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" x-text="language === 'en' ? 'Join our learning community in Salama Estate, Thika' : 'Jiunge na jamii yetu ya kujifunza katika eneo la Salama Estate, Thika'"></p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-white p-8 rounded-lg border border-gray-200">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                         <i class="fas fa-calendar-check text-yellow-500 mr-3"></i>
-                        Admissions Process
+                        <span x-text="language === 'en' ? 'Admissions Process' : 'Mchakato wa Uandikishaji'"></span>
                     </h3>
-                    <p class="text-gray-600 mb-6">Our admissions process is designed to be straightforward and welcoming for new families in Thika and surrounding areas.</p>
+                    <p class="text-gray-600 mb-6" x-text="language === 'en' ? 'Our admissions process is designed to be straightforward and welcoming for new families in Thika and surrounding areas.' : 'Mchakato wetu wa uandikishaji umeundwa kuwa rahisi na wa kukaribisha kwa familia mpya huko Thika na maeneo jirani.'"></p>
                     <ul class="space-y-3 mb-6">
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Submit inquiry form</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Submit inquiry form' : 'Wasilisha fomu ya maswali'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Schedule a campus tour</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Schedule a campus tour' : 'Panga ziara ya kampasi'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Complete application</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Complete application' : 'Kamilisha maombi'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Student assessment</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Student assessment' : 'Tathmini ya mwanafunzi'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-blue-800 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Enrollment</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Enrollment' : 'Usajili'"></span>
                         </li>
                     </ul>
-                    <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Apply Now</a>
+                    <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block" x-text="language === 'en' ? 'Apply Now' : 'Ombi Sasa'"></a>
                 </div>
                 
                 <div class="bg-white p-8 rounded-lg border border-gray-200">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                         <i class="fas fa-graduation-cap text-yellow-500 mr-3"></i>
-                        Scholarships
+                        <span x-text="language === 'en' ? 'Scholarships' : 'Udhamini'"></span>
                     </h3>
-                    <p class="text-gray-600 mb-6">We offer merit-based scholarships and need-based financial aid to qualified students from Thika and surrounding communities.</p>
+                    <p class="text-gray-600 mb-6" x-text="language === 'en' ? 'We offer merit-based scholarships and need-based financial aid to qualified students from Thika and surrounding communities.' : 'Tunatoa udhamini kulingana na mafanikio na misaada ya kifedha kulingana na mahitaji kwa wanafunzi waliohitimu kutoka Thika na jamii zilizoko jirani.'"></p>
                     <ul class="space-y-3 mb-6">
                         <li class="flex items-start">
                             <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Academic Excellence Scholarship</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Academic Excellence Scholarship' : 'Udhamini wa Ubora wa Masomo'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Arts & Sports Scholarships</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Arts & Sports Scholarships' : 'Udhamini wa Sanaa na Michezo'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Financial Aid Program</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Financial Aid Program' : 'Mpango wa Misaada ya Kifedha'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Sibling Discounts</span>
+                            <span class="text-gray-700" x-text="language === 'en' ? 'Sibling Discounts' : 'Punguzo la Ndugu'"></span>
                         </li>
                     </ul>
-                    <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Learn More</a>
+                    <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block" x-text="language === 'en' ? 'Learn More' : 'Jifunze Zaidi'"></a>
                 </div>
             </div>
         </div>
@@ -281,8 +392,8 @@
     <section id="news" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">News & Events</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Stay updated with our community in Salama Estate</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'News & Events' : 'Habari na Matukio'"></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" x-text="language === 'en' ? 'Stay updated with our community in Salama Estate' : 'Kaa ukaribu na jamii yetu katika eneo la Salama Estate'"></p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -292,9 +403,9 @@
                     </div>
                     <div class="p-6">
                         <span class="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full mb-3">June 15, 2023</span>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Annual Sports Day Champions</h3>
-                        <p class="text-gray-600 mb-4">Our students showcased incredible talent and sportsmanship at our Annual Sports Day. Congratulations to all participants from our Salama Estate campus!</p>
-                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Read More →</a>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" x-text="language === 'en' ? 'Annual Sports Day Champions' : 'Mabingwa wa Siku ya Michezo ya Mwaka'"></h3>
+                        <p class="text-gray-600 mb-4" x-text="language === 'en' ? 'Our students showcased incredible talent and sportsmanship at our Annual Sports Day. Congratulations to all participants from our Salama Estate campus!' : 'Wanafunzi wetu walionyesha kipaji cha kushangaza na uchezaji mzuri katika Siku yetu ya Michezo ya Mwaka. Hongera kwa washiriki wote kutoka kampasi yetu ya Salama Estate!'"></p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition" x-text="language === 'en' ? 'Read More →' : 'Soma Zaidi →'"></a>
                     </div>
                 </div>
                 
@@ -304,9 +415,9 @@
                     </div>
                     <div class="p-6">
                         <span class="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full mb-3">May 28, 2023</span>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Science Fair Winners</h3>
-                        <p class="text-gray-600 mb-4">Circle Spring students won three awards at the Thika Regional Science Fair for their innovative projects on renewable energy and environmental conservation.</p>
-                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Read More →</a>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" x-text="language === 'en' ? 'Science Fair Winners' : 'Washindi wa Maonyesho ya Sayansi'"></h3>
+                        <p class="text-gray-600 mb-4" x-text="language === 'en' ? 'Circle Spring students won three awards at the Thika Regional Science Fair for their innovative projects on renewable energy and environmental conservation.' : 'Wanafunzi wa Circle Spring walishinda tuzo tatu katika Maonyesho ya Sayansi ya Mkoa wa Thika kwa miradi yao ya ubunifu juu ya nishati mbadala na uhifadhi wa mazingira.'"></p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition" x-text="language === 'en' ? 'Read More →' : 'Soma Zaidi →'"></a>
                     </div>
                 </div>
                 
@@ -316,15 +427,15 @@
                     </div>
                     <div class="p-6">
                         <span class="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full mb-3">April 10, 2023</span>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">New Learning Commons Opens</h3>
-                        <p class="text-gray-600 mb-4">Our newly renovated library and learning commons is now open, featuring state-of-the-art technology and collaborative spaces for enhanced learning.</p>
-                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition">Read More →</a>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" x-text="language === 'en' ? 'New Learning Commons Opens' : 'Kituo Kipya cha Kujifunza Kinafunguliwa'"></h3>
+                        <p class="text-gray-600 mb-4" x-text="language === 'en' ? 'Our newly renovated library and learning commons is now open, featuring state-of-the-art technology and collaborative spaces for enhanced learning.' : 'Maktaba yetu iliyoboreshwa na kituo cha kujifunza kimefunguliwa sasa, kikiwa na teknolojia ya kisasa na nafasi za ushirikiano kwa ajili ya kujifunza bora.'"></p>
+                        <a href="#" class="text-blue-800 font-semibold hover:text-blue-600 transition" x-text="language === 'en' ? 'Read More →' : 'Soma Zaidi →'"></a>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">View All News</a>
+                <a href="#" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block" x-text="language === 'en' ? 'View All News' : 'Tazama Habari Zote'"></a>
             </div>
         </div>
     </section>
@@ -333,8 +444,8 @@
     <section class="py-16 bg-white" x-data="{ openCategory: null, openFaq: null }">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Everything you need to know about Circle Spring School in Salama Estate, Thika</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'Frequently Asked Questions' : 'Maswali Yanayoulizwa Mara Kwa Mara'"></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" x-text="language === 'en' ? 'Everything you need to know about Circle Spring School in Salama Estate, Thika' : 'Kila kitu unachohitaji kujua kuhusu Shule ya Circle Spring katika eneo la Salama Estate, Thika'"></p>
             </div>
             
             <div class="max-w-4xl mx-auto space-y-6">
@@ -345,8 +456,8 @@
                         class="w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50 transition"
                     >
                         <div>
-                            <h3 class="text-xl font-semibold text-blue-800">Admissions Process</h3>
-                            <p class="text-gray-500 text-sm mt-1">Learn about our enrollment requirements and procedures</p>
+                            <h3 class="text-xl font-semibold text-blue-800" x-text="language === 'en' ? 'Admissions Process' : 'Mchakato wa Uandikishaji'"></h3>
+                            <p class="text-gray-500 text-sm mt-1" x-text="language === 'en' ? 'Learn about our enrollment requirements and procedures' : 'Jifunze kuhusu mahitaji na taratibu zetu za usajili'"></p>
                         </div>
                         <svg 
                             class="h-6 w-6 text-blue-800 transform transition-transform duration-300" 
@@ -364,7 +475,7 @@
                                     @click="openFaq = openFaq === 'admissions1' ? null : 'admissions1'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">What is the admissions process at Circle Spring School?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'What is the admissions process at Circle Spring School?' : 'Ni nini mchakato wa uandikishaji katika Shule ya Circle Spring?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'admissions1' ? 'rotate-180' : ''"
@@ -374,7 +485,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'admissions1'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">Our admissions process involves: 1) Submitting an inquiry form, 2) Scheduling a campus tour, 3) Completing the application, 4) Student assessment, and 5) Final enrollment. The entire process typically takes 2-3 weeks.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'Our admissions process involves: 1) Submitting an inquiry form, 2) Scheduling a campus tour, 3) Completing the application, 4) Student assessment, and 5) Final enrollment. The entire process typically takes 2-3 weeks.' : 'Mchakato wetu wa uandikishaji unajumuisha: 1) Kuwasilisha fomu ya maswali, 2) Kupanga ziara ya kampasi, 3) Kukamilisha maombi, 4) Tathmini ya mwanafunzi, na 5) Usajili wa mwisho. Mchakato wote kwa kawaida huchukua wiki 2-3.'"></p>
                                 </div>
                             </div>
                             
@@ -383,7 +494,7 @@
                                     @click="openFaq = openFaq === 'admissions2' ? null : 'admissions2'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">What are the age requirements for different programs?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'What are the age requirements for different programs?' : 'Ni mahitaji gani ya umri kwa programu tofauti?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'admissions2' ? 'rotate-180' : ''"
@@ -393,7 +504,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'admissions2'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">Early Years Program: 3-5 years old, Primary School: 6-12 years old (Grades 1-6). Children must meet the age requirement by September 1st of the academic year.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'Early Years Program: 3-5 years old, Primary School: 6-12 years old (Grades 1-6). Children must meet the age requirement by September 1st of the academic year.' : 'Programu ya Miaka ya Mapema: Umri wa miaka 3-5, Shule ya Msingi: Umri wa miaka 6-12 (Darasa la 1-6). Watoto lazima wafikie mahitaji ya umri ifikapo Septemba 1 ya mwaka wa masomo.'"></p>
                                 </div>
                             </div>
                             
@@ -402,7 +513,7 @@
                                     @click="openFaq = openFaq === 'admissions3' ? null : 'admissions3'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">Do you accept mid-year transfers?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'Do you accept mid-year transfers?' : 'Je, mnakubali kuhamisha katikati ya mwaka?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'admissions3' ? 'rotate-180' : ''"
@@ -412,7 +523,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'admissions3'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">Yes, we accept mid-year transfers based on availability. The student will undergo an assessment to ensure proper placement, and we'll review previous school records.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'Yes, we accept mid-year transfers based on availability. The student will undergo an assessment to ensure proper placement, and we will review previous school records.' : 'Ndio, tunakubali kuhamisha katikati ya mwaka kulingana na upatikanaji. Mwanafunzi atafanyiwa tathmini ili kuhakikisha upangaji sahihi, na tutakagua rekodi za shule zilizopita.'"></p>
                                 </div>
                             </div>
                         </div>
@@ -426,8 +537,8 @@
                         class="w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50 transition"
                     >
                         <div>
-                            <h3 class="text-xl font-semibold text-blue-800">Fees & Payment</h3>
-                            <p class="text-gray-500 text-sm mt-1">Information about tuition, payment options, and financial aid</p>
+                            <h3 class="text-xl font-semibold text-blue-800" x-text="language === 'en' ? 'Fees & Payment' : 'Ada na Malipo'"></h3>
+                            <p class="text-gray-500 text-sm mt-1" x-text="language === 'en' ? 'Information about tuition, payment options, and financial aid' : 'Taarifa kuhusu masomo, chaguzi za malipo, na misaada ya kifedha'"></p>
                         </div>
                         <svg 
                             class="h-6 w-6 text-blue-800 transform transition-transform duration-300" 
@@ -445,7 +556,7 @@
                                     @click="openFaq = openFaq === 'fees1' ? null : 'fees1'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">What is included in the school fees?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'What is included in the school fees?' : 'Ni nini kinachojumuishwa kwenye ada ya shule?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'fees1' ? 'rotate-180' : ''"
@@ -455,7 +566,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'fees1'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">Our fees cover tuition, textbooks, basic stationery, and access to all school facilities. Additional costs may include uniforms, specialized extracurricular activities, and field trips.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'Our fees cover tuition, textbooks, basic stationery, and access to all school facilities. Additional costs may include uniforms, specialized extracurricular activities, and field trips.' : 'Ada zetu zinajumuisha masomo, vitabu vya kiada, vifaa vya kawaida vya kuandikia, na ufikiaji wa vyombo vyote vya shule. Gharama za ziada zinaweza kujumuisha sare, shughuli maalum za ziada, na safari za kielimu.'"></p>
                                 </div>
                             </div>
                             
@@ -464,7 +575,7 @@
                                     @click="openFaq = openFaq === 'fees2' ? null : 'fees2'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">What payment options are available?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'What payment options are available?' : 'Ni chaguzi gani za malipo zinapatikana?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'fees2' ? 'rotate-180' : ''"
@@ -474,7 +585,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'fees2'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">We accept bank transfers, mobile money (M-Pesa), and cash payments. Fees can be paid annually, per term (3 terms), or through monthly installment plans with a small administrative fee.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'We accept bank transfers, mobile money (M-Pesa), and cash payments. Fees can be paid annually, per term (3 terms), or through monthly installment plans with a small administrative fee.' : 'Tunakubali hamisha benki, pesa za rununu (M-Pesa), na malipo ya pesa taslim. Ada zinaweza kulipwa kila mwaka, kwa kila muhula (mihula 3), au kupitia mipango ya malipo ya kila mwezi na ada ndogo ya usimamizi.'"></p>
                                 </div>
                             </div>
                             
@@ -483,7 +594,7 @@
                                     @click="openFaq = openFaq === 'fees3' ? null : 'fees3'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">Are there any discounts for siblings?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'Are there any discounts for siblings?' : 'Je, kuna punguzo lolote kwa ndugu?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'fees3' ? 'rotate-180' : ''"
@@ -493,7 +604,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'fees3'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">Yes, we offer a 10% discount on tuition fees for the second child and 15% for the third and subsequent children from the same family.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'Yes, we offer a 10% discount on tuition fees for the second child and 15% for the third and subsequent children from the same family.' : 'Ndio, tunatoa punguzo la 10% kwenye ada ya masomo kwa mtoto wa pili na 15% kwa mtoto wa tatu na watoto wafuatao kutoka kwa familia moja.'"></p>
                                 </div>
                             </div>
                         </div>
@@ -507,8 +618,8 @@
                         class="w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50 transition"
                     >
                         <div>
-                            <h3 class="text-xl font-semibold text-blue-800">Academic Programs</h3>
-                            <p class="text-gray-500 text-sm mt-1">Details about our curriculum and educational approach</p>
+                            <h3 class="text-xl font-semibold text-blue-800" x-text="language === 'en' ? 'Academic Programs' : 'Mipango ya Masomo'"></h3>
+                            <p class="text-gray-500 text-sm mt-1" x-text="language === 'en' ? 'Details about our curriculum and educational approach' : 'Maelezo kuhusu mtaala wetu na mbinu ya kielimu'"></p>
                         </div>
                         <svg 
                             class="h-6 w-6 text-blue-800 transform transition-transform duration-300" 
@@ -526,7 +637,7 @@
                                     @click="openFaq = openFaq === 'academics1' ? null : 'academics1'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">What curriculum does Circle Spring School follow?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'What curriculum does Circle Spring School follow?' : 'Shule ya Circle Spring inafuata mtaala gani?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'academics1' ? 'rotate-180' : ''"
@@ -536,7 +647,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'academics1'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">We follow the Kenyan Competency-Based Curriculum (CBC) with enhancements in critical thinking, creativity, and global perspectives to provide a well-rounded education.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'We follow the Kenyan Competency-Based Curriculum (CBC) with enhancements in critical thinking, creativity, and global perspectives to provide a well-rounded education.' : 'Tunafuata Mtaala wa Kenya unaozingatia Uwezo (CBC) na uboreshaji katika fikra za kina, ubunifu, na mitazamo ya kimataifa ili kutoa elimu kamili.'"></p>
                                 </div>
                             </div>
                             
@@ -545,7 +656,7 @@
                                     @click="openFaq = openFaq === 'academics2' ? null : 'academics2'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">What extracurricular activities are available?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'What extracurricular activities are available?' : 'Ni shughuli gani za ziada zinapatikana?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'academics2' ? 'rotate-180' : ''"
@@ -555,7 +666,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'academics2'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">We offer sports (football, athletics, swimming), music, art, drama, coding club, debate, environmental club, and various cultural activities to develop diverse talents.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'We offer sports (football, athletics, swimming), music, art, drama, coding club, debate, environmental club, and various cultural activities to develop diverse talents.' : 'Tunatoa michezo (mpira wa miguu, riadha, kuogelea), muziki, sanaa, mchezo wa kuigiza, klabu ya coding, mjadala, klabu ya mazingira, na shughuli mbalimbali za kitamaduni ili kuendeleza vipaji tofauti.'"></p>
                                 </div>
                             </div>
                             
@@ -564,7 +675,7 @@
                                     @click="openFaq = openFaq === 'academics3' ? null : 'academics3'" 
                                     class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition"
                                 >
-                                    <span class="text-lg font-medium text-gray-900">Do you offer special needs education support?</span>
+                                    <span class="text-lg font-medium text-gray-900" x-text="language === 'en' ? 'Do you offer special needs education support?' : 'Je, mnatoa msaada wa elimu ya mahitaji maalum?'"></span>
                                     <svg 
                                         class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
                                         :class="openFaq === 'academics3' ? 'rotate-180' : ''"
@@ -574,7 +685,7 @@
                                     </svg>
                                 </button>
                                 <div x-show="openFaq === 'academics3'" x-transition class="px-5 pb-5">
-                                    <p class="text-gray-600">Yes, we have a Special Educational Needs (SEN) program with trained staff to support students with learning differences. We conduct assessments to create individualized learning plans.</p>
+                                    <p class="text-gray-600" x-text="language === 'en' ? 'Yes, we have a Special Educational Needs (SEN) program with trained staff to support students with learning differences. We conduct assessments to create individualized learning plans.' : 'Ndio, tuna programu ya Mahitaji Maalum ya Kielimu (SEN) na wafanyakazi waliofunzwa kusaidia wanafunzi wenye tofauti za kujifunza. Tunafanya tathmini ili kuunda mipango ya kujifunza ya kibinafsi.'"></p>
                                 </div>
                             </div>
                         </div>
@@ -583,81 +694,239 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
+<section class="relative isolate overflow-hidden bg-gray-50 px-6 py-24 sm:py-32 lg:px-8">
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-blue-100),white)] opacity-30"></div>
+  <div class="mx-auto max-w-4xl text-center mb-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'What Parents Say' : 'Wazazi Wasemaje'"></h2>
+    <p class="text-xl text-gray-600" x-text="language === 'en' ? 'Hear from our community in Salama Estate, Thika' : 'Sikiliza kutoka kwa jamii yetu katika eneo la Salama Estate, Thika'"></p>
+  </div>
+  
+  <div class="mx-auto max-w-4xl" x-data="{ activeTestimonial: 1 }">
+    <!-- Testimonial Navigation -->
+    <div class="flex justify-center space-x-2 mb-8">
+      <button @click="activeTestimonial = 1" 
+              class="w-3 h-3 rounded-full transition"
+              :class="activeTestimonial === 1 ? 'bg-blue-800' : 'bg-blue-300'"></button>
+      <button @click="activeTestimonial = 2" 
+              class="w-3 h-3 rounded-full transition"
+              :class="activeTestimonial === 2 ? 'bg-blue-800' : 'bg-blue-300'"></button>
+      <button @click="activeTestimonial = 3" 
+              class="w-3 h-3 rounded-full transition"
+              :class="activeTestimonial === 3 ? 'bg-blue-800' : 'bg-blue-300'"></button>
+    </div>
+    
+    <!-- Testimonial 1 -->
+    <div x-show="activeTestimonial === 1" x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 transform scale-95"
+         x-transition:enter-end="opacity-100 transform scale-100"
+         class="bg-white p-8 rounded-xl shadow-lg">
+      <div class="flex justify-center mb-6">
+        <div class="flex text-yellow-400">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+      <blockquote class="text-lg text-gray-700 italic text-center mb-6" x-text="language === 'en' ? 'Circle Spring School has been a blessing for our family. In just two years, we have watched our daughter transform from a shy child to a confident, curious learner. The teachers dedication and the nurturing environment in Salama Estate have made all the difference.' : 'Shule ya Circle Spring imekua ni baraka kwa familia yetu. Katika miaka miwili tu, tumeona binti yetu akibadilika kutoka mtoto mwenye haya hadi mwanafunzi mwenye kujiamini na udadisi. Ujitoleaji wa walimu na mazingira ya malezi katika eneo la Salama Estate yameleta tofauti yote.'"></blockquote>
+      <div class="flex items-center justify-center">
+        <div class="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+          MW
+        </div>
+        <div>
+          <div class="font-semibold text-gray-900" x-text="language === 'en' ? 'Mr. & Mrs. Wanjiku' : 'Bwana na Bi. Wanjiku'"></div>
+          <div class="text-blue-800 text-sm" x-text="language === 'en' ? 'Parents of Grade 3 Student' : 'Wazazi wa Mwanafunzi wa Darasa la 3'"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Testimonial 2 -->
+    <div x-show="activeTestimonial === 2" x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 transform scale-95"
+         x-transition:enter-end="opacity-100 transform scale-100"
+         class="bg-white p-8 rounded-xl shadow-lg">
+      <div class="flex justify-center mb-6">
+        <div class="flex text-yellow-400">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+      <blockquote class="text-lg text-gray-700 italic text-center mb-6" x-text="language === 'en' ? 'The academic foundation my son received at Circle Spring prepared him excellently for secondary school. The teachers go above and beyond, and the small class sizes ensure each child gets personalized attention. We are so grateful for the six years he spent here in Thika.' : 'Msingi wa kielimu mwanangu alioupata katika Circle Spring ulimtayarisha vyema kwa shule ya upili. Walimu hufanya zaidi ya kawaida, na ukubwa mdogo wa madarasa huhakikisha kila mtoto anapata umakini wa kibinafsi. Tunashukuru sana kwa miaka sita aliyoitumia hapa Thika.'"></blockquote>
+      <div class="flex items-center justify-center">
+        <div class="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+          JK
+        </div>
+        <div>
+          <div class="font-semibold text-gray-900" x-text="language === 'en' ? 'Jane Kamau' : 'Jane Kamau'"></div>
+          <div class="text-blue-800 text-sm" x-text="language === 'en' ? 'Parent of Alumni' : 'Mzazi wa Mhitimu'"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Testimonial 3 -->
+    <div x-show="activeTestimonial === 3" x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 transform scale-95"
+         x-transition:enter-end="opacity-100 transform scale-100"
+         class="bg-white p-8 rounded-xl shadow-lg">
+      <div class="flex justify-center mb-6">
+        <div class="flex text-yellow-400">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+      <blockquote class="text-lg text-gray-700 italic text-center mb-6" x-text="language === 'en' ? 'As new residents in Salama Estate, we were worried about finding the right school. Circle Spring exceeded our expectations with their warm welcome and excellent communication. Our daughter loves her teachers and has made so many friends. The balance of academics and extracurriculars is perfect.' : 'Kama wakaaji wapya katika eneo la Salama Estate, tulikuwa na wasiwasi juu ya kupata shule sahihi. Circle Spring ilizidi matarajio yetu kwa kukaribisha kwa upendo na mawasiliano bora. Binti yetu anawapenda walimu wake na amefanya marafiki wengi. Usawa wa masomo na shughuli za ziada ni kamili.'"></blockquote>
+      <div class="flex items-center justify-center">
+        <div class="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+          DO
+        </div>
+        <div>
+          <div class="font-semibold text-gray-900" x-text="language === 'en' ? 'David Ochieng' : 'David Ochieng'"></div>
+          <div class="text-blue-800 text-sm" x-text="language === 'en' ? 'Parent of Grade 1 Student' : 'Mzazi wa Mwanafunzi wa Darasa la 1'"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+   <!-- Contact Form Section -->
     <section id="contact" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="bg-blue-800 text-white p-8 rounded-lg">
-                    <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-                    <p class="text-lg mb-8">We'd love to hear from you. Reach out to schedule a tour or learn more about our programs at our Salama Estate campus.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-yellow-500 text-xl mt-1 mr-4"></i>
-                            <div>
-                                <h4 class="font-bold text-lg">Address</h4>
-                                <p>Salama Estate, Landless<br>Thika, Kenya</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <i class="fas fa-phone-alt text-yellow-500 text-xl mt-1 mr-4"></i>
-                            <div>
-                                <h4 class="font-bold text-lg">Phone</h4>
-                                <p>0111 427110</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <i class="fas fa-envelope text-yellow-500 text-xl mt-1 mr-4"></i>
-                            <div>
-                                <h4 class="font-bold text-lg">Email</h4>
-                                <p>enquiries@circlespringschool.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <i class="fas fa-clock text-yellow-500 text-xl mt-1 mr-4"></i>
-                            <div>
-                                <h4 class="font-bold text-lg">Office Hours</h4>
-                                <p>Monday-Friday: 8:00 AM - 4:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
-                    <form class="space-y-5">
-                        <div>
-                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required>
-                        </div>
-                        <div>
-                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required>
-                        </div>
-                        <div>
-                            <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800">
-                        </div>
-                        <div>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required>
-                                <option value="" disabled selected>I'm interested in...</option>
-                                <option>Early Years Program</option>
-                                <option>Primary Program</option>
-                                <option>Admissions Process</option>
-                                <option>School Tour</option>
-                                <option>Other Inquiry</option>
-                            </select>
-                        </div>
-                        <div>
-                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800" required></textarea>
-                        </div>
-                        <button type="submit" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 w-full">Send Message</button>
-                    </form>
-                </div>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" x-text="language === 'en' ? 'Contact Us' : 'Wasiliana Nasi'"></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" x-text="language === 'en' ? 'Have questions or want to learn more about Circle Spring School in Salama Estate, Thika? Send us a message!' : 'Una maswali au unataka kujifunza zaidi kuhusu Shule ya Circle Spring katika eneo la Salama Estate, Thika? Tutumie ujumbe!'"></p>
+            </div>
+<div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
+    <h3 class="text-2xl font-bold text-gray-900 mb-6" x-text="language === 'en' ? 'Send us a Message' : 'Tutumie Ujumbe'"></h3>
+    <form class="space-y-5" x-data="contactForm()" @submit.prevent="submitForm">
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-2" x-text="language === 'en' ? 'Full Name *' : 'Jina Kamili *'"></label>
+            <input type="text" id="name" x-model="formData.name" :placeholder="language === 'en' ? 'Your Name' : 'Jina Lako'" 
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition"
+                   :class="errors.name ? 'border-red-500' : ''" required>
+            <p x-show="errors.name" class="text-red-500 text-sm mt-1" x-text="errors.name"></p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2" x-text="language === 'en' ? 'Email *' : 'Barua Pepe *'"></label>
+                <input type="email" id="email" x-model="formData.email" :placeholder="language === 'en' ? 'Your Email' : 'Barua Pepe Yako'" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition"
+                       :class="errors.email ? 'border-red-500' : ''" required>
+                <p x-show="errors.email" class="text-red-500 text-sm mt-1" x-text="errors.email"></p>
+            </div>
+            
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2" x-text="language === 'en' ? 'Phone Number' : 'Nambari ya Simu'"></label>
+                <input type="tel" id="phone" x-model="formData.phone" :placeholder="language === 'en' ? 'Phone Number' : 'Nambari ya Simu'" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition">
             </div>
         </div>
-    </section>
+        
+        <div>
+            <label for="interest" class="block text-sm font-medium text-gray-700 mb-2" x-text="language === 'en' ? 'I am interested in *' : 'Nina nia ya *'"></label>
+            <select id="interest" x-model="formData.interest" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition" required>
+                <option value="" disabled selected x-text="language === 'en' ? 'Select an option...' : 'Chagua chaguo...'"></option>
+                <option x-text="language === 'en' ? 'Early Years Program' : 'Programu ya Miaka ya Mapema'"></option>
+                <option x-text="language === 'en' ? 'Primary Program' : 'Programu ya Msingi'"></option>
+                <option x-text="language === 'en' ? 'Admissions Process' : 'Mchakato wa Uandikishaji'"></option>
+                <option x-text="language === 'en' ? 'School Tour' : 'Ziara ya Shule'"></option>
+                <option x-text="language === 'en' ? 'Other Inquiry' : 'Uchunguzi Mwingine'"></option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-2" x-text="language === 'en' ? 'Message *' : 'Ujumbe *'"></label>
+            <textarea id="message" rows="5" x-model="formData.message" :placeholder="language === 'en' ? 'Your Message' : 'Ujumbe Wako'" 
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition"
+                      :class="errors.message ? 'border-red-500' : ''" required></textarea>
+            <p x-show="errors.message" class="text-red-500 text-sm mt-1" x-text="errors.message"></p>
+        </div>
+        
+        <button type="submit" :disabled="loading" 
+                class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 w-full flex items-center justify-center"
+                :class="loading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'">
+            <span x-show="!loading" x-text="language === 'en' ? 'Send Message' : 'Tuma Ujumbe'"></span>
+            <span x-show="loading" class="flex items-center">
+                <i class="fas fa-spinner fa-spin mr-2"></i><span x-text="language === 'en' ? 'Sending...' : 'Inatumwa...'"></span>
+            </span>
+        </button>
+        
+        <!-- Success Message -->
+        <div x-show="success" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded" x-text="language === 'en' ? 'Thank you! Your message has been sent successfully. We will get back to you soon.' : 'Asante! Ujumbe wako umepelekwa kwa mafanikio. Tutawasiliana nawe hivi karibuni.'"></div>
+    </form>
+</div>
+</div>
+</section>
+
+<script>
+function contactForm() {
+    return {
+        formData: {
+            name: '',
+            email: '',
+            phone: '',
+            interest: '',
+            message: ''
+        },
+        errors: {},
+        loading: false,
+        success: false,
+        
+        validateForm() {
+            this.errors = {};
+            
+            if (!this.formData.name.trim()) {
+                this.errors.name = Alpine.store('app').language === 'en' ? 'Name is required' : 'Jina linahitajika';
+            }
+            
+            if (!this.formData.email.trim()) {
+                this.errors.email = Alpine.store('app').language === 'en' ? 'Email is required' : 'Barua pepe inahitajika';
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.formData.email)) {
+                this.errors.email = Alpine.store('app').language === 'en' ? 'Please enter a valid email' : 'Tafadhali ingiza barua pepe sahihi';
+            }
+            
+            if (!this.formData.message.trim()) {
+                this.errors.message = Alpine.store('app').language === 'en' ? 'Message is required' : 'Ujumbe unahitajika';
+            }
+            
+            return Object.keys(this.errors).length === 0;
+        },
+        
+        async submitForm() {
+            if (!this.validateForm()) return;
+            
+            this.loading = true;
+            
+            // Simulate form submission
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            this.loading = false;
+            this.success = true;
+            
+            // Reset form
+            this.formData = {
+                name: '',
+                email: '',
+                phone: '',
+                interest: '',
+                message: ''
+            };
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                this.success = false;
+            }, 5000);
+        }
+    }
+}
+</script>
 
     <!-- Footer -->
     <footer class="bg-blue-900 text-white py-12">
@@ -665,8 +934,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 <div>
                     <img src="logo-BBA39KOS.jpg" alt="Circle Spring School Logo" class="h-16 w-16 rounded-lg mb-4">
-                    <h3 class="text-xl font-bold mb-4">Circle Spring</h3>
-                    <p class="text-blue-200 mb-6">Providing quality education in Thika since 2005. Nurturing young minds to become tomorrow's leaders.</p>
+                    <h3 class="text-xl font-bold mb-4" x-text="language === 'en' ? 'Circle Spring' : 'Circle Spring'"></h3>
+                    <p class="text-blue-200 mb-6" x-text="language === 'en' ? 'Providing quality education in Thika since 2005. Nurturing young minds to become tomorrow leaders.' : 'Kutoa elimu bora huko Thika tangu 2005. Kulea akili za vijana kuwa viongozi wa kesho.'"></p>
                     <div class="flex space-x-4">
                         <a href="#" class="bg-blue-800 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition">
                             <i class="fab fa-facebook-f"></i>
@@ -684,33 +953,33 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <h3 class="text-xl font-bold mb-4" x-text="language === 'en' ? 'Quick Links' : 'Viungo vya Haraka'"></h3>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-blue-200 hover:text-white transition">Home</a></li>
-                        <li><a href="#about" class="text-blue-200 hover:text-white transition">About Us</a></li>
-                        <li><a href="#academics" class="text-blue-200 hover:text-white transition">Academics</a></li>
-                        <li><a href="#admissions" class="text-blue-200 hover:text-white transition">Admissions</a></li>
-                        <li><a href="#news" class="text-blue-200 hover:text-white transition">News & Events</a></li>
+                        <li><a href="#home" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'Home' : 'Nyumbani'"></a></li>
+                        <li><a href="#about" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'About Us' : 'Kuhusu Sisi'"></a></li>
+                        <li><a href="#academics" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'Academics' : 'Masomo'"></a></li>
+                        <li><a href="#admissions" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'Admissions' : 'Uandikishaji'"></a></li>
+                        <li><a href="#news" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'News & Events' : 'Habari na Matukio'"></a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Programs</h3>
+                    <h3 class="text-xl font-bold mb-4" x-text="language === 'en' ? 'Programs' : 'Programu'"></h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Early Years</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Primary School</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Enrichment Programs</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">After School Care</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Summer Camp</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'Early Years' : 'Miaka ya Mapema'"></a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'Primary School' : 'Shule ya Msingi'"></a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'Enrichment Programs' : 'Programu za Uboreshaji'"></a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'After School Care' : 'Huduma baada ya Shule'"></a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition" x-text="language === 'en' ? 'Summer Camp' : 'Kambi ya Majira ya joto'"></a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <h3 class="text-xl font-bold mb-4" x-text="language === 'en' ? 'Contact Info' : 'Maelezo ya Mawasiliano'"></h3>
                     <ul class="space-y-3">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt text-yellow-500 mt-1 mr-3"></i>
-                            <span class="text-blue-200">Salama Estate, Thika</span>
+                            <span class="text-blue-200" x-text="language === 'en' ? 'Salama Estate, Thika' : 'Eneo la Salama Estate, Thika'"></span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-phone-alt text-yellow-500 mt-1 mr-3"></i>
@@ -722,14 +991,14 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-clock text-yellow-500 mt-1 mr-3"></i>
-                            <span class="text-blue-200">Mon-Fri: 8:00AM - 4:00PM</span>
+                            <span class="text-blue-200" x-text="language === 'en' ? 'Mon-Fri: 8:00AM - 4:00PM' : 'Jumatatu-Ijumaa: 8:00 asubuhi - 4:00 usiku'"></span>
                         </li>
                     </ul>
                 </div>
             </div>
             
             <div class="pt-8 border-t border-blue-800 text-center">
-                <p class="text-blue-300">&copy; <span id="currentYear"></span> Circle Spring School. All Rights Reserved.</p>
+                <p class="text-blue-300" x-text="language === 'en' ? '© Circle Spring School. All Rights Reserved.' : '© Shule ya Circle Spring. Haki zote zimehifadhiwa.'"></p>
             </div>
         </div>
     </footer>
@@ -777,6 +1046,68 @@
                 }
             });
         });
+    </script>
+    <script>
+        // Enhanced scroll tracking for navigation
+function initScrollTracking() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeSection = entry.target.getAttribute('id');
+                Alpine.store('app').activeSection = activeSection;
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => observer.observe(section));
+}
+
+// Initialize Alpine.js store
+document.addEventListener('alpine:init', () => {
+    Alpine.store('app', {
+        activeSection: 'home',
+        mobileMenuOpen: false,
+        language: 'en'
+    });
+});
+
+// Enhanced smooth scrolling with offset for fixed header
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight - 20;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            Alpine.store('app').mobileMenuOpen = false;
+        }
+    });
+});
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initScrollTracking();
+    
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+});
     </script>
 </body>
 </html>
